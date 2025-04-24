@@ -3,7 +3,7 @@ name: Terraform - deploy VM Linux to TEST environement
 trigger: 
    branches:
     include:
-    - master
+    - main
 
 variables:
   - group: Terraform_SP
