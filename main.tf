@@ -38,14 +38,14 @@ resource "azurerm_virtual_network" "vnet" {
   tags                = var.tags
 }
 
-resource "azurerm_subnet" "vm_subnet" {
+resource "azurerm_subnet" "vm_subnet_public" {
   address_prefixes     = var.address_snet_public
   name                 = lower("${module.naming.subnet.name}-Front")
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
 }
 
-resource "azurerm_subnet" "vm_subnet" {
+resource "azurerm_subnet" "vm_subnet_private" {
   address_prefixes     = var.address_snet_private
   name                 = lower("${module.naming.subnet.name}-Back")
   resource_group_name  = azurerm_resource_group.rg.name
