@@ -17,7 +17,8 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
       AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}    
       TF_BACKEND_FILE: ${{ secrets.TF_BACKEND_FILE }}
-      TF_VARS_FILE: ${{ secrets.TF_VARS_FILE }}    runs-on: ubuntu-latest
+      TF_VARS_FILE: ${{ secrets.TF_VARS_FILE }}    
+    runs-on: ubuntu-latest
     environnment: test
 
     defaults:
