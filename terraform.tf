@@ -3,6 +3,6 @@ terraform {
     resource_group_name  = "terraform-ResourceGroup"
     storage_account_name = "terraformoptstoaccount"
     container_name       = "tfstate"
-    user_oidc = true
+    use_oidc = true
   }
 }
