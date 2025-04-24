@@ -19,7 +19,7 @@ jobs:
       TF_BACKEND_FILE: ${{ secrets.TF_BACKEND_FILE }}
       TF_VARS_FILE: ${{ secrets.TF_VARS_FILE }}    
     runs-on: ubuntu-latest
-    environnment: test
+    environment: test
 
     defaults:
       run:
