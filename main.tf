@@ -15,6 +15,7 @@ locals {
 
 #
 #  https://github.com/Azure/terraform-azurerm-naming/tree/master
+#
 module "naming" {
   source = "Azure/naming/azurerm"
 
