@@ -1,17 +1,10 @@
 # provider.tf
 
 provider "azurerm" {
-  features = {}
-}
-
-# Set the Azure Provider source and version being used
-terraform {
-  required_version = ">= 0.14"
-
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 3.1.0"
+  features {
+    key_vault {
+      purge_soft_delete_on_destroy = true
     }
   }
+  use_oidc = true
 }

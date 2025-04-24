@@ -7,14 +7,15 @@ resource "azurerm_virtual_network" "vnet" {
   name                = "test-vnet"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  address_space       = ["10.100.0.0/16"]
+  address_space       = var.address_space
+  tags                = var.tags
 }
 
 resource "azurerm_subnet" "public_subnet" {
   name                 = "public-subnet"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = ["10.100.1.0/24"]
+  address_prefixes     = var.address_snet_public
 
   delegation {
     name = "delegation"
@@ -28,7 +29,7 @@ resource "azurerm_subnet" "private_subnet" {
   name                 = "private-subnet"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = ["10.100.2.0/24"]
+  address_prefixes     = var.address_snet_private
 }
 
 resource "azurerm_network_security_group" "public_nsg" {
