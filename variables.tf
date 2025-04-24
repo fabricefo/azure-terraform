@@ -1,4 +1,4 @@
-################
+################################
 # Variables for naming convention
 
 #---------
@@ -19,14 +19,14 @@ variable "service_name" {
   default = "FFO"
 }
 
-################
+################################
 # Location
 variable "location" {
   description = "Azure region"
   default = "francecentral"
 }
 
-################
+################################
 # Network
 variable "address_space" {
   type    = list(string)
@@ -41,7 +41,7 @@ variable "address_snet_private" {
   default = [""]
 }
 
-################
+################################
 # Tags
 variable "tags" {
   type        = map(string)
