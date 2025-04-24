@@ -1,6 +1,33 @@
+provider "azurerm" {
+  features {
+    key_vault {
+      purge_soft_delete_on_destroy = true
+    }
+  }
+  use_oidc = true
+}
+
+data "azurerm_client_config" "current" {}
+
+locals {
+  resource_group_name = "${var.company_trig}-${var.env}-RG-${var.service_name}"
+}
+
+#
+#  https://github.com/Azure/terraform-azurerm-naming/tree/master
+module "naming" {
+  source = "Azure/naming/azurerm"
+
+  prefix        = ["${var.company_trig}", "${var.env}"] #  Trig Compagny, Env
+  suffix        = ["${var.service_name}"]               # Service_Name or Project
+  unique-length = 4                                     # = default
+}
+
 resource "azurerm_resource_group" "rg" {
-  name     = var.resource_group_name
+  name     = upper(module.naming.resource_group.name)
   location = var.location
+  
+  tags = var.tags
 }
 
 resource "azurerm_virtual_network" "vnet" {
@@ -52,51 +79,4 @@ resource "azurerm_subnet_network_security_group_association" "public_nsg_assoc" 
 resource "azurerm_subnet_network_security_group_association" "private_nsg_assoc" {
   subnet_id                 = azurerm_subnet.private_subnet.id
   network_security_group_id = azurerm_network_security_group.private_nsg.id
-}
-
-resource "azurerm_container_group" "container_app" {
-  name                = "test-container-app"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-  os_type             = "Linux"
-
-  container {
-    name   = "app"
-    image  = "nginx:latest"
-    cpu    = "0.5"
-    memory = "1.5"
-
-    ports {
-      port     = 80
-      protocol = "TCP"
-    }
-  }
-
-  ip_address {
-    type            = "Public"
-    ports {
-      port     = 80
-      protocol = "TCP"
-    }
-  }
-}
-
-resource "azurerm_postgresql_flexible_server" "postgresql" {
-  name                = "test-postgresql"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-  administrator_login = "adminuser"
-  administrator_password = "P@ssw0rd1234!"
-  sku_name            = "Standard_B1ms"
-  version             = "13"
-  storage_mb          = 32768
-
-  delegated_subnet_id = azurerm_subnet.private_subnet.id
-}
-
-resource "azurerm_postgresql_flexible_server_configuration" "postgresql_config" {
-  name                = "connection_throttling"
-  resource_group_name = azurerm_resource_group.rg.name
-  server_name         = azurerm_postgresql_flexible_server.postgresql.name
-  value               = "off"
 }

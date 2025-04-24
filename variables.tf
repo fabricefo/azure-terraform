@@ -1,9 +1,22 @@
-
 ################
-# Resource Group
-variable "resource_group_name" {
-  description = "Name of the resource group"
-  default     = "test-ResourceGroup"
+# Variables for naming convention
+
+#---------
+# Compagny trigram
+variable "company_trig" {
+  default = "OPT"
+}
+#---------
+# Environment
+variable "env" {
+  default = "TEST"
+}
+
+#---------
+# Short Service/Project name 
+variable "service_name" {
+  type    = string
+  default = "FFO"
 }
 
 ################

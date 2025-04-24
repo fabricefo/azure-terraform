@@ -1,0 +1,25 @@
+name: Terraform - deploy VM Linux to TEST environement
+
+trigger: 
+   branches:
+    include:
+    - master
+
+variables:
+  - group: Terraform_SP
+  - name: rootFolder
+    value: './'
+  - name: backendfile
+    value: 'test.ffo.tfstate'
+  - name: tfvarsFile
+    value: 'terraform.test.tfvars'
+  - name: environment
+    value: 'TEST'
+  
+stages:
+- template: templates/terraform-deploy-template.yml
+  parameters:
+    rootFolder: $(rootFolder)
+    backendfile: $(backendfile)
+    tfvarsFile: $(tfvarsFile)
+    environment: $(environment)
