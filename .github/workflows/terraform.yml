@@ -7,21 +7,19 @@ on:
 
 permissions:
   contents: read
-  id-token: write # This fetches an OpenID Connect (OIDC) token.
-  pull-requests: write  
-env:
-  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-  ARM_USE_AZUREAD: true
 
 jobs:
   terraform:
     name: Terraform Apply
-    runs-on: ubuntu-latest
-    env : 
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}    
       TF_BACKEND_FILE: ${{ secrets.TF_BACKEND_FILE }}
-      TF_VARS_FILE: ${{ secrets.TF_VARS_FILE }}
+      TF_VARS_FILE: ${{ secrets.TF_VARS_FILE }}    runs-on: ubuntu-latest
+    environnment: test
+
     defaults:
       run:
         shell: bash
