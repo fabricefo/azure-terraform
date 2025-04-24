@@ -1,10 +1,13 @@
 # provider.tf
 
-provider "azurerm" {
-  features {
-    key_vault {
-      purge_soft_delete_on_destroy = true
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "=4.26.0"
     }
   }
-  use_oidc = true
+}
+provider "azurerm" {
+  features {}
 }

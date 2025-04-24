@@ -2,9 +2,9 @@
 
 terraform {
   backend "azurerm" {
-    storage_account_name = "azccinfratfback"
-    container_name       = "tfstate"
-    # key                  = "poc.vml.tfstate"
-    use_oidc = true
+    resource_group_name  = "terraform-ResourceGroup"
+    storage_account_name = "terraformoptstoaccount"
+    container_name       = "tfstatefile"
+    key                  = "test.terraform.tfstate"
   }
 }

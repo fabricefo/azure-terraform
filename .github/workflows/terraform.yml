@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   terraform:
-    name: Terraform Apply
+    name: Terraform
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
@@ -30,8 +30,8 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
-
+      uses: hashicorp/setup-terraform@v1
+      
     - name: Initialize Terraform
       run: terraform init -backend-config "key=${TF_BACKEND_FILE}" -reconfigure
 
