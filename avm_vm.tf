@@ -28,7 +28,7 @@ module "vm" {
       ip_configurations = {
         ip_configuration_1 = {
           name                          = "${module.naming.network_interface.name_unique}-ipconfig1"
-          private_ip_subnet_resource_id = azurerm_subnet.vm_subnet.id
+          private_ip_subnet_resource_id = azurerm_subnet.vm_subnet_public.id
           create_public_ip_address      = true
           public_ip_address_name        = module.naming.public_ip.name_unique
         }

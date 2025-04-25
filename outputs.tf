@@ -7,17 +7,9 @@ output "vnet_name" {
 }
 
 output "public_subnet_id" {
-  value = azurerm_subnet.public_subnet.id
+  value = azurerm_subnet.vm_subnet_public.id
 }
 
 output "private_subnet_id" {
-  value = azurerm_subnet.private_subnet.id
-}
-
-output "postgresql_server_name" {
-  value = azurerm_postgresql_flexible_server.postgresql.name
-}
-
-output "container_app_url" {
-  value = azurerm_container_group.container_app.ip_address[0].ip
+  value = azurerm_subnet.vm_subnet_private.id
 }
