@@ -51,3 +51,18 @@ variable "tags" {
     source = "terraform"
   }
 }
+
+################################
+# Custom data
+locals {
+  custom_data = <<-EOF
+    #cloud-config
+    package_update: true
+    package_upgrade: true
+    packages:
+      - nginx
+    runcmd:
+      - systemctl enable nginx
+      - systemctl start nginx
+  EOF
+}
