@@ -4,6 +4,7 @@ terraform {
     storage_account_name = "terraformoptstoaccount"
     container_name       = "tfstate"
     key                  = "test.ffo.tfstate"
-   use_oidc = true
+    use_oidc             = true
+
   }
 }

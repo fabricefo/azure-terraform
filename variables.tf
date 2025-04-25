@@ -23,7 +23,7 @@ variable "service_name" {
 # Location
 variable "location" {
   description = "Azure region"
-  default = "francecentral"
+  default     = "francecentral"
 }
 
 ################################

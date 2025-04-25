@@ -2,9 +2,9 @@ env      = "TEST"
 location = "francecentral"
 
 # network
-address_space = ["10.100.0.0/16"]
+address_space        = ["10.100.0.0/16"]
 address_snet_public  = ["10.100.1.0/24"]
-address_snet_private  = ["10.100.2.0/24"]
+address_snet_private = ["10.100.2.0/24"]
 
 # tags
 tags = {

@@ -27,7 +27,7 @@ module "naming" {
 resource "azurerm_resource_group" "rg" {
   name     = upper(module.naming.resource_group.name)
   location = var.location
-  
+
   tags = var.tags
 }
 
