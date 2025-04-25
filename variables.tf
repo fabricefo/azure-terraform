@@ -41,7 +41,6 @@ variable "address_snet_private" {
   default = [""]
 }
 
-
 ################################
 # Tags
 variable "tags" {
