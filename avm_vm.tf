@@ -49,16 +49,7 @@ module "vm" {
   }
 
   # Script cloud-init pour installer Nginx
-  custom_data = <<-EOF
-    #cloud-config
-    package_update: true
-    package_upgrade: true
-    packages:
-      - nginx
-    runcmd:
-      - systemctl enable nginx
-      - systemctl start nginx
-  EOF
+  custom_data = base64encode(local.custom_data)
 
   tags = var.tags
 }

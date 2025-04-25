@@ -13,3 +13,16 @@ tags = {
   technical_contact = "ffourel@gmail.com"
   date_creation     = "24/04/2025"
 }
+
+locals {
+  custom_data = <<-EOF
+    #cloud-config
+    package_update: true
+    package_upgrade: true
+    packages:
+      - nginx
+    runcmd:
+      - systemctl enable nginx
+      - systemctl start nginx
+  EOF
+}
